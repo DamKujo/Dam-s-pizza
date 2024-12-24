@@ -2,8 +2,9 @@ import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
+  const codeThis = req.nextUrl.searchParams.get("code");
   try {
-    const code = req.nextUrl.searchParams.get("code");
+    const code = codeThis;
 
     if (!code) {
       return NextResponse.json({ message: "Code not found" }, { status: 400 });
