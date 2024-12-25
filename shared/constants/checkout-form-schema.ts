@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]|как можно скорее)$/i;
+const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])|Как можно скорее$/i;
 
 export const CheckoutFormSchema = z.object({
   firstName: z

@@ -281,12 +281,15 @@ async function up() {
         sourceUrl:
           "https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE",
       },
-      {
-        storyId: 1,
-        sourceUrl:
-          "https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE",
-      },
     ],
+  });
+
+  await prisma.storyItem.create({
+    data: {
+      storyId: 5,
+      sourceUrl:
+        "https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE",
+    },
   });
 }
 
