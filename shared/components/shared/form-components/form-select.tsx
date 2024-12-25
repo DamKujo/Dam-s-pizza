@@ -76,12 +76,6 @@ export const FormSelect: React.FC<Props> = ({
                 );
               }
             })}
-            {/* <SelectItem value="09:00">09:00</SelectItem>
-            <SelectItem value="12:00">12:00</SelectItem>
-            <SelectItem value="15:00">15:00</SelectItem>
-            <SelectItem value="18:00">18:00</SelectItem>
-            <SelectItem value="21:00">21:00</SelectItem>
-            <SelectItem value="00:00">00:00</SelectItem> */}
           </SelectContent>
         </Select>
       </div>
