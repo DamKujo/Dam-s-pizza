@@ -19,6 +19,10 @@ npm run prisma:studio
 
 `postinstall` runs `prisma generate`. There is no test suite.
 
+## Environment 
+- Full list is in `.env.example`. Do not read or modify `.env`.
+
+
 Environment variables used: `POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `NEXT_PUBLIC_API_URL` (axios base URL, normally `http://localhost:3000/api`), `NEXTAUTH_SECRET`, `GITHUB_ID`/`GITHUB_SECRET`, `RESEND_API_KEY`, `YOOKASSA_STORE_ID`/`YOOKASSA_API_KEY`/`YOOKASSA_CALLBACK_URL`.
 
 ## Architecture
@@ -35,6 +39,8 @@ Path alias `@/*` maps to the repo root (e.g. `@/shared/lib`, `@/prisma/prisma-cl
   - `constants/` — NextAuth `authOptions`, zod checkout schema, pizza size/type maps.
 - `prisma/` — `schema.prisma`, singleton client (`prisma-client.ts`), seed data.
 - `@types/` — module augmentation for next-auth session, Prisma-derived composite types, YooKassa payloads.
+- `claude/` - permissions.
+
 
 ### Key flows
 
