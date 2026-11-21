@@ -12,12 +12,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev            # dev server on http://localhost:3000
 npm run build          # production build (also the main type-check)
 npm run lint           # next lint (eslint-config-next)
+npm test               # unit tests (Vitest). Must pass before finishing a task.
 npm run prisma:push    # sync schema.prisma to the DB (no migrations folder; db push is the workflow)
 npm run prisma:seed    # runs prisma/seed.ts via ts-node: truncates tables, then reseeds
 npm run prisma:studio
 ```
 
-`postinstall` runs `prisma generate`. There is no test suite.
+`postinstall` runs `prisma generate`.
 
 ## Environment 
 - Full list is in `.env.example`. Do not read or modify `.env`.
@@ -49,3 +50,17 @@ Path alias `@/*` maps to the repo root (e.g. `@/shared/lib`, `@/prisma/prisma-cl
 - **Cart**: anonymous, identified by a `cartToken` cookie (random UUID set by `POST /api/cart`). Adding an item merges into an existing `CartItem` only if variation and the exact ingredient set match. After any mutation, `updateCartTotalAmount(token)` recomputes `Cart.totalAmount` and returns the cart.
 - **Checkout**: `createOrder` server action reads the cart by cookie, creates an `Order` (items snapshotted as JSON string), clears the cart, creates a YooKassa payment, emails the payment link via Resend (React email templates in `components/shared/email-templates`), and returns the payment URL. YooKassa then calls `POST /api/checkout/callback`, which sets order status `SUCCEEDED`/`CANCELLED` and sends the result email.
 - **Auth**: NextAuth with JWT sessions, GitHub + Credentials providers (`shared/constants/auth-options.ts`). Credentials login requires `User.verified`; registration creates a `VerificationCode` and emails it, and `GET /api/auth/verify` confirms it. Use `getUserSession()` on the server.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for DamKujo/Dam-s-pizza, managed with the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
